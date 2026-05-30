@@ -18,7 +18,7 @@
   "17": "Chỉ cho phép tối đa 3 lệnh nạp!",
   "18": "Vui lòng nạp số tiền từ",
   "19": "Khuyến mãi không tồn tại!",
-  "20": "Khuyến mãi đã kết thúc!",
+  "20": "Khuyến mãi đã kết thúc!",
   "21": "Quá lượt áp dụng",
   "22": "Số tiền được hưởng khuyến mãi không hợp lệ",
   "24": "Bạn chưa liên kết tài khoản ngân hàng!",
@@ -36,7 +36,7 @@
   "36": "Không còn lượt quay!",
   "37": "Chưa nhập gift code!",
   "38": "Gift code không tồn tại!",
-  "39": "Giftcode đã hết hạn sử dụng!",
+  "39": "Giftcode đã hết hạn sử dụng!",
   "40": "Đã hết lượt sử dụng!",
   "41": "Gift code không hợp lệ!",
   "42": "Bạn đã dùng giftcode này!",
@@ -46,7 +46,7 @@
   "46": "Id không hợp lệ!",
   "47": "Giải thưởng không tồn tại!",
   "48": "Vòng quay đã được người dùng sử dụng. Không thể xóa!",
-  "49": "Giftcode đã tồn tại!",
+  "49": "Giftcode đã tồn tại!",
   "50": "Cập độ VIP đã tồn tại!",
   "51": "Đã tồn tại điều kiện cược này",
   "52": "Tài khoản không tồn tại",
@@ -54,5 +54,6 @@
   "54": "Nhóm hoàn trả này đã tồn tại!",
   "55": "Không được để trống tỉ lệ!",
   "56": "Vui lòng chọn người nhận!",
-  "57": "Không thể xóa mặc định!"
+  "57": "Không thể xóa mặc định!",
+  "networkError": "Lỗi kết nối mạng. Vui lòng kiểm tra internet và thử lại!"
 }

@@ -129,6 +129,7 @@ export default function ModalLaunchGame({ open, setOpen, gameSelect }: any) {
           <div className="grid gap-2 grid-cols-4 ">
             {RecommendMoney?.map((item) => (
               <button
+                key={item.value}
                 onClick={() => {
                   let value =
                     item.value >= Number(profile?.money)
