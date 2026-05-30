@@ -84,6 +84,7 @@ class Http {
         return response;
       },
       (error: AxiosError) => {
+        Cookies.set("isLoading", "false", { expires: 1 });
         // Chỉ toast lỗi không phải 422 và 401
         if (
           ![
@@ -91,7 +92,10 @@ class Http {
             HttpStatusCode.Unauthorized,
           ].includes(error.response?.status as number)
         ) {
-          Cookies.set("isLoading", "false", { expires: 1 });
+          // Handle network errors
+          if (!error.response) {
+            toast.error(i18n.t("msgApi:networkError") || "Network Error");
+          }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           //   const data: any | undefined = error.response?.data;
           //   const message = data?.message || error.message;
