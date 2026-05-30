@@ -1,39 +1,53 @@
 const getBaseUrl = (): string => {
-  if (typeof window !== "undefined" && import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+  // First priority: environment variables
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl) {
+    return envUrl;
   }
 
+  // Second priority: localhost development
+  if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+    return "http://localhost:8000";
+  }
+
+  // Third priority: Builder.io preview or other preview environments
+  if (typeof window !== "undefined" && window.location.hostname.includes("builderio.dev")) {
+    return "https://api.ii88bet.com";
+  }
+
+  // Fourth priority: dynamic subdomain construction
   if (typeof window !== "undefined") {
-    if (window.location.hostname === "localhost") {
-      return "http://localhost:8000";
-    }
-    // For Builder.io preview or other non-production environments
-    if (window.location.hostname.includes("builderio.dev")) {
-      return import.meta.env.VITE_API_URL || "https://api.ii88bet.com";
-    }
     return `https://api.${window.location.hostname}`;
   }
 
-  return "http://localhost:8000";
+  // Fallback
+  return "https://api.ii88bet.com";
 };
 
 const getWebSocketUrl = (): string => {
-  if (typeof window !== "undefined" && import.meta.env.VITE_WS_URL) {
-    return import.meta.env.VITE_WS_URL;
+  // First priority: environment variables
+  const envWsUrl = import.meta.env.VITE_WS_URL;
+  if (envWsUrl) {
+    return envWsUrl;
   }
 
+  // Second priority: localhost development
+  if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+    return "ws://localhost:8080/connect";
+  }
+
+  // Third priority: Builder.io preview or other preview environments
+  if (typeof window !== "undefined" && window.location.hostname.includes("builderio.dev")) {
+    return "wss://game.ii88bet.com/connect";
+  }
+
+  // Fourth priority: dynamic subdomain construction
   if (typeof window !== "undefined") {
-    if (window.location.hostname === "localhost") {
-      return "ws://localhost:8080/connect";
-    }
-    // For Builder.io preview or other non-production environments
-    if (window.location.hostname.includes("builderio.dev")) {
-      return import.meta.env.VITE_WS_URL || "wss://game.ii88bet.com/connect";
-    }
     return `wss://game.${window.location.hostname}/connect`;
   }
 
-  return "ws://localhost:8080/connect";
+  // Fallback
+  return "wss://game.ii88bet.com/connect";
 };
 
 export const URL = {

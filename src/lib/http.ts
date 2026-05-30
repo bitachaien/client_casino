@@ -85,17 +85,23 @@ class Http {
       },
       (error: AxiosError) => {
         Cookies.set("isLoading", "false", { expires: 1 });
-        // Chỉ toast lỗi không phải 422 và 401
-        if (
+        // Handle network errors and connection timeouts
+        if (!error.response) {
+          console.error("Network Error:", error.message);
+          // Only show error for non-401/422 errors
+          if (error.code !== "ERR_CANCELED") {
+            toast.error(
+              i18n.t("msgApi:networkError") ||
+              "Lỗi kết nối mạng. Vui lòng kiểm tra internet và thử lại!"
+            );
+          }
+        } else if (
           ![
             HttpStatusCode.UnprocessableEntity,
             HttpStatusCode.Unauthorized,
           ].includes(error.response?.status as number)
         ) {
-          // Handle network errors
-          if (!error.response) {
-            toast.error(i18n.t("msgApi:networkError") || "Network Error");
-          }
+          // Handle other HTTP errors
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           //   const data: any | undefined = error.response?.data;
           //   const message = data?.message || error.message;
